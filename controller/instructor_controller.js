@@ -3,18 +3,24 @@ const Instructor =require('../model/instructors');
 //console.log('Instructor controller is loaded');
 
 // id
-// title
-// description
-// date
+// name
+// specialization
+// bio
+// email
+// phone
 // image
+// teaching_philosophy
 
 module.exports.createInstructor = function(req,res){
     const instructors = {
       id:req.body.id,
-      title:req.body.title,
-      description:req.body.description,
-      date:req.body.date,
-      image:req.body.image
+      name:req.body.name,
+      specialization:req.body.specialization,
+      bio:req.body.bio,
+      email:req.body.email,
+      phone:req.body.phone,
+      image:req.body.image,
+      teaching_philosophy:req.body.teaching_philosophy
     }
     
     const instructorObj = Instructor.build(instructors);

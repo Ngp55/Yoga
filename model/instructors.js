@@ -2,36 +2,51 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/mysql');
 
-const Instructor = sequelize.define('Instructor',{
-  id:{
-    type:DataTypes.BIGINT,
-    allowNull:false,
-    autoIncrement:true,
-    primaryKey:true
-  },
-  title:{
-    type:DataTypes.STRING,
+const Instructor = sequelize.define('Instructor', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
     allowNull:false
   },
-  description:{
-    type:DataTypes.STRING,
-    allowNull:false,
-    
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
-  date:{
-    type:DataTypes.DATE,
-    allowNull:false
+  specialization: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
-  image:{
-    type:DataTypes.STRING,
-    allowNull:false,
-    
-  }
-},{
-  tableName:'Instructors',
-  timestamps:true
-})
-
+  bio: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true, // Ensure it's a valid email address
+    },
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  image: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isUrl: true, // Ensure it's a valid URL
+    },
+  },
+  teaching_philosophy: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+}, {
+  tableName: 'Instructors', // Set the table name
+  timestamps: true, // Include createdAt and updatedAt columns
+});
 console.log('instructor model is created');
 
 
