@@ -1,0 +1,48 @@
+/* Header styles */
+.main-container {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 10px;
+    width: 100%;
+    background-color: rgb(76, 201, 191);
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+  }
+  
+  li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  li a {
+    display: block;
+    color: #bd1010;
+    text-decoration: none;
+    padding: 10px 16px;
+  }
+  
+  li a:hover {
+    background-color: #ddd;
+    border-radius: 50px;
+  }
+  
+  .active {
+    background-color: #d42367;
+    color: white;
+  }
+  

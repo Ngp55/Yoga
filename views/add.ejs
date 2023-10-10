@@ -1,0 +1,18 @@
+<body>
+    <h2>Date Input Form</h2>
+    <form action="/kitab/create-book" method="post">
+        <label for="name">Id:</label>
+        <input type="text" id="name" name="id" required><br><br>
+
+        <label for="email">Name:</label>
+        <input type="text" id="email" name="name" required><br><br>
+
+        <label for="phone">subject:</label>
+        <input type="text" id="phone" name="subject" required><br><br>
+
+        <label for="birthdate">Release Date (yyyy-mm-dd):</label>
+        <input type="date" id="birthdate" name="date" required pattern="\d{4}-\d{2}-\d{2}" placeholder="yyyy-mm-dd"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
