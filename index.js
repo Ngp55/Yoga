@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-
+const cors = require('cors')
 const port = 8000;
 
 const expressLayouts = require('express-ejs-layouts');
@@ -18,6 +18,8 @@ const sequelize = require('./config/mysql');
 //app.use(express.json()); // Parse JSON bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+app.use(cors());
 
 app.use(express.static('./assets'));
 
