@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -42,7 +44,7 @@ sequelize.authenticate().then(() => {
 
 sequelize.sync()
       .then((result) => {
-        console.log(result);
+        console.log('Database is Okay');
       })
       .catch((error) =>{
         console.log(error);

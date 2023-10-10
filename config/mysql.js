@@ -15,8 +15,8 @@
 const { Sequelize } = require('sequelize');
 
 // Initialize Sequelize with your database connection details
-const sequelize = new Sequelize('yoga', 'Experi', 'admin@1122', {
-  host: 'localhost', // Change this to your database host if it's different
+const sequelize = new Sequelize('bzchcqwak7skghev62o0', 'uzjbh57r6m48tw3n', 'We6jp16UcpozoCQmjhyl', {
+  host: 'bzchcqwak7skghev62o0-mysql.services.clever-cloud.com', // Change this to your database host if it's different
   dialect: 'mysql',
 });
 
