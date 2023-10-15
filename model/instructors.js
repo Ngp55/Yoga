@@ -45,7 +45,7 @@ const Instructor = sequelize.define('Instructor', {
   },
 }, {
   tableName: 'Instructors', // Set the table name
-  timestamps: true, // Include createdAt and updatedAt columns
+  
 });
 console.log('instructor model is created');
 
