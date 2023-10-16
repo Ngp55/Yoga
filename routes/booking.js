@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const blogController = require('../controller/blog_controller');
+const bookingController = require('../controller/booking_controller');
 
-//console.log('Blog router is loaded');
+//console.log('booking router is loaded');
 
 
-router.post('/create-blog',blogController.createBlog);
+router.post('/create-booking',bookingController.createBooking);
 
-router.get('/show-blogs',blogController.showBlogs);
+router.get('/show-bookings',bookingController.showbookings);
 
-router.get('/show-blog/:id',blogController.showSingleBlog);
+router.get('/show-booking/:id',bookingController.showSingleBooking);
 
-router.put('/update-blog/:id', blogController.updateBlogById);
+router.put('/update-booking/:id', bookingController.updateBookingById);
 
-router.delete('/delete-blog/:id',blogController.deleteBlog);
+router.delete('/delete-booking/:id',bookingController.deleteBooking);
 
 module.exports = router;

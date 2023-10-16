@@ -8,17 +8,43 @@ const Event =require('../model/events');
 // date
 // url
 // image
-module.exports.createEvent = async function(req,res){
-    const { id,name,description,date,image } = req.body;
+// module.exports.createEvent = async function(req,res){
+//     const { id,name,description,date,image } = req.body;
     
-    const eventObj = Event.build(event);
-    eventObj.save().then(() =>{
-        res.status(201).json({ message: 'Event added successfully' });
-    })
-    .then((error) =>{
-        console.log(error);
-    })
+//     const eventObj = Event.build(event);
+//     eventObj.save().then(() =>{
+//         res.status(201).json({ message: 'Event added successfully' });
+//     })
+//     .then((error) =>{
+//         console.log(error);
+//     })
 
+// }
+
+
+module.exports.createEvent = async function (req, res) {
+  const { id, name, description, date, image } = req.body;
+  if (!name || !description || !date || !image ) {
+    const missingFields = [];
+
+    if (!name) missingFields.push('Name');
+    if (!description) missingFields.push('Description');
+    if (!date) missingFields.push('Date');
+    if (!image) missingFields.push('Image');
+
+    const missingFieldMessage = `Please provide : ${missingFields.join(', ')}`;
+    return res.json({ message: missingFieldMessage });
+  }
+  const event = new Event({ id, name, description, date, image });
+
+  try {
+    await event.save();
+    res.status(201).json({ message: 'Event added successfully' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'An error occurred while saving the Event.' });
+
+  }
 }
 
 module.exports.showEvents = async function(req,res){
@@ -60,11 +86,11 @@ module.exports.showSingleEvent = async function(req,res){
   //     res.status(500).json({ error: 'An error occurred while fetching Event.' });
   //   });     
   try{
-    const event= await Blog.findByPk(eventID);
+    const event= await Event.findByPk(eventID);
     if(!event){
       return res.status(404).json({error:'Event not found'});
     }
-
+    res.json(event);
   } catch(error){
       console.log(error);
       res.status(500).json({ error: 'An error occurred while fetching Event.' });

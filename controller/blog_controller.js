@@ -71,22 +71,22 @@ module.exports.showBlogs = async function (req, res) {
 //     });       
 // }
 
-module.exports.showSingleBlog = async function (req, res) {
-  const blogId = req.params.id;
+// module.exports.showSingleBlog = async function (req, res) {
+//   const blogId = req.params.id;
 
-  try {
-    const blog = await Blog.findByPk(blogId);
+//   try {
+//     const blog = await Blog.findByPk(blogId);
 
-    if (!blog) {
-      return res.status(404).json({ error: 'Blog not found' });
-    }
+//     if (!blog) {
+//       return res.status(404).json({ error: 'Blog not found' });
+//     }
 
-    res.json(blog);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred while fetching blog.' });
-  }
-};
+//     res.json(blog);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'An error occurred while fetching blog.' });
+//   }
+// };
 
 
 // module.exports.updateBlogById = (req, res) => {
@@ -130,6 +130,23 @@ module.exports.showSingleBlog = async function (req, res) {
   }
 };
 
+module.exports.updateBlogById = async (req, res) => {
+  const blogId = req.params.id;
+  const updatedData = req.body; // Assuming you send the updated data in the request body
+
+  try {
+    const blogs = await Blog.findByPk(blogId);
+    if (!blogs) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
+
+    const updatedBlog = await blogs.update(updatedData);
+    res.json(updatedBlog);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while updating the blog.' });
+  }
+}
 
 // module.exports.deleteBlog = function(req,res){
 //     const blogId = req.params.id;

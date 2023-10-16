@@ -1,0 +1,21 @@
+    name
+    description
+    img
+    date
+    fees
+    duration
+    schedule
+    location
+    level
+    max_students
+    class_size
+    class_type
+    instructor
+    ratings
+    reviews
+    url
+  
+
+
+    name description img date fees duration schedule location level max_students class_size class_type instructor ratings reviews url
+  

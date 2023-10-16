@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const blogController = require('../controller/blog_controller');
+const classController = require('../controller/class_controller');
 
-//console.log('Blog router is loaded');
+//console.log('class router is loaded');
 
 
-router.post('/create-blog',blogController.createBlog);
+router.post('/create-class',classController.createClass);
 
-router.get('/show-blogs',blogController.showBlogs);
+router.get('/show-classes',classController.showClasses);
 
-router.get('/show-blog/:id',blogController.showSingleBlog);
+router.get('/show-class/:id',classController.showSingleClass);
 
-router.put('/update-blog/:id', blogController.updateBlogById);
+router.put('/update-class/:id', classController.updateClassById);
 
-router.delete('/delete-blog/:id',blogController.deleteBlog);
+router.delete('/delete-class/:id',classController.deleteClass);
 
 module.exports = router;

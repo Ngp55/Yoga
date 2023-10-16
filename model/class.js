@@ -20,6 +20,7 @@ const sequelize = require('../config/mysql');
 // reviews
 // url
 
+
 const Class = sequelize.define('Class',{
   id:{
     type:DataTypes.BIGINT,
@@ -100,11 +101,11 @@ const Class = sequelize.define('Class',{
   },
 },{
   tableName:'Classes',
-  timestamps:true
+  timestamps:false
 })
 
 
-console.log('events model is created');
+console.log('Class model is created');
 
 
 module.exports = Class;

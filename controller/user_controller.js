@@ -1,111 +1,98 @@
-const Blog =require('../model/blogs');
+const User =require('../model/user');
 
 //console.log('blog controller is loaded');
+// id
+// email
+// displayName
+// role
+
+module.exports.createUser = async function(req,res){
+  const { id,email,displayName,role} = req.body;
+
+  if ( !email || !displayName || !role ) {
+    const missingFields = [];
+
+    if (!email) missingFields.push('Email');
+    if (!displayName) missingFields.push('Display Name');
+    if (!role) missingFields.push('Role')
+
+    const missingFieldMessage = `Please provide : ${missingFields.join(', ')}`;
+    return res.json({ message: missingFieldMessage });
+  }
+  const users = new User({ id,email,displayName,role});
+  try {
+    await users.save();
+    return res.json({ message: 'User created successfully' });
+  } catch (error) {
+    return res.status(500).json({ message: 'An error occurred while saving the User.' });
+  }
+
+}
 
 
 
-module.exports.createBlog = function(req,res){
-    const blogs = {
-      id:req.body.id,
-      title:req.body.title,
-      description:req.body.description,
-      date:req.body.date,
-      image:req.body.image,
-      metadata:req.body.metadata,
-      url:req.body.url
+
+module.exports.showUsers = async function (req, res) {
+  try {
+    const users = await User.findAll();
+    console.log(users);
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while getting Classes' });
+  }
+};
+
+module.exports.showSingleUser = async function (req, res) {
+  const classId = req.params.id;
+
+  try {
+    const users = await User.findByPk(classId);
+
+    if (!users) {
+      return res.status(404).json({ error: 'User not found' });
     }
-    
-    const blogsObj = Blog.build(blogs);
-    blogsObj.save().then(() =>{
-        res.status(201).json({ message: 'Blog added successfully' });
-    })
-    .then((error) =>{
-        console.log(error);
-    })
 
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching User.' });
+  }
+};
+
+module.exports.updateUserById = async (req, res) => {
+  const classId = req.params.id;
+  const updatedData = req.body; // Assuming you send the updated data in the request body
+
+  try {
+    const users = await User.findByPk(classId);
+    if (!users) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const updatedClass = await users.update(updatedData);
+    res.json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while updating the User.' });
+  }
 }
 
 
-module.exports.showBlogs = function(req,res){
-    Blog.findAll().then((blogs) =>{
-        console.log(blogs);
-        
-        res.json(blogs);
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({error: 'An error occured while getting blogs'});
-        })
-}
+module.exports.deleteUser = async function (req, res) {
+  const classId = req.params.id;
 
-module.exports.showSingleBlog= function(req,res){
-    const blogId = req.params.id;
-    //console.log(blogId);
-  // Find the blog by its ID
-  Blog.findByPk(blogId)
-    .then((blogs) => {
-      if (!blogs) {
-        return res.status(404).json({ error: 'Blog not found' });
-      }
+  try {
+    const users = await User.findByPk(classId);
 
-      // Return the blog data in JSON format
-      res.json(blogs);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred while fetching blog.' });
-    });       
-}
+    if (!users) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
-module.exports.updateBlogById = (req, res) => {
-    const blogId = req.params.id;
-    const updatedData = req.body; // Assuming you send the updated data in the request body
-  
-    // Find the blog by its ID
-    Blog.findByPk(blogId)
-      .then((blogs) => {
-        if (!blogs) {
-          return res.status(404).json({ error: 'Blog not found' });
-        }
-  
-        // Update the blog's data
-        return blogs.update(updatedData);
-      })
-      .then((updatedBlog) => {
-        // Return the updated blog in JSON format
-        res.json(updatedBlog);
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while updating the blog.' });
-      });
-  };
-
-
-module.exports.deleteBlog = function(req,res){
-    const blogId = req.params.id;
-  // Find the blog by its ID and delete it
-  Blog.findByPk(blogId)
-    .then((blogs) => {
-      if (!blogs) {
-        return res.status(404).json({ error: 'Blog not found' });
-      }
-
-      // Delete the blog
-      return blogs.destroy();
-    })
-    .then(() => {
-      res.json({ message: 'Blog deleted successfully' });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred while deleting the blog.' });
-    });
-
-}
-
-      // id
-      // title
-      // description
-      // date
-      // image
+    await users.destroy();
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while deleting the User.' });
+  }
+};

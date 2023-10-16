@@ -5,8 +5,13 @@ const sequelize = require('../config/mysql');
 //Email, displayName, classId
 
 const Booking = sequelize.define('Booking',{
-  
-  Email:{
+  id: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  email:{
     type:DataTypes.STRING,
     allowNull:false
   },
