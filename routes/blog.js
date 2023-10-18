@@ -9,7 +9,7 @@ router.post('/create-blog',blogController.createBlog);
 
 router.get('/show-blogs',blogController.showBlogs);
 
-router.get('/show-blog/:id',blogController.showSingleBlog);
+router.get('/show-blog/:url',blogController.showSingleBlog);
 
 router.put('/update-blog/:id', blogController.updateBlogById);
 
