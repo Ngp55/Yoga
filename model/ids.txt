@@ -18,4 +18,69 @@
 
 
     name description img date fees duration schedule location level max_students class_size class_type instructor ratings reviews url
-  
+
+router.post('/create-blog',blogController.createBlog);
+
+router.get('/show-blogs',blogController.showBlogs);
+
+router.get('/show-blog/:id',blogController.showSingleBlog);
+
+router.put('/update-blog/:id', blogController.updateBlogById);
+
+router.delete('/delete-blog/:id',blogController.deleteBlog);
+
+
+
+https://yoga.asdfrajkumar112.repl.co/class/show-classes
+https://yoga.asdfrajkumar112.repl.co/class/show-class/1
+https://yoga.asdfrajkumar112.repl.co/class/create-class
+https://yoga.asdfrajkumar112.repl.co/class/update-class/1
+https://yoga.asdfrajkumar112.repl.co/class/delete-class/1
+
+
+https://yoga.asdfrajkumar112.repl.co/booking/show-bookings
+https://yoga.asdfrajkumar112.repl.co/booking/show-booking/1
+https://yoga.asdfrajkumar112.repl.co/booking/create-booking
+https://yoga.asdfrajkumar112.repl.co/booking/update-booking/1
+https://yoga.asdfrajkumar112.repl.co/booking/delete-booking/1
+
+
+https://yoga.asdfrajkumar112.repl.co/user/show-users
+https://yoga.asdfrajkumar112.repl.co/user/show-user/1
+https://yoga.asdfrajkumar112.repl.co/user/create-users
+https://yoga.asdfrajkumar112.repl.co/user/update-user/1
+https://yoga.asdfrajkumar112.repl.co/user/delete-user/1
+
+
+name,description,img,date,fees,duration,schedule,location,level,
+max_students,class_size,class_type,instructor,ratings,reviews,url
+
+
+email,address,number,hero_title,
+hero_text,about_text,gallery_image,
+logo,mission_text
+
+Setting{ email,address,number,hero_title,hero_text,about_text,gallery_image,logo,mission_text,)
+messages( name,email,message )
+Members ( email )
+
+
+https://yoga.asdfrajkumar112.repl.co/setting/show-settinges
+https://yoga.asdfrajkumar112.repl.co/setting/show-setting/1
+https://yoga.asdfrajkumar112.repl.co/setting/create-setting
+https://yoga.asdfrajkumar112.repl.co/setting/update-setting/1
+https://yoga.asdfrajkumar112.repl.co/setting/delete-setting/1
+
+
+https://yoga.asdfrajkumar112.repl.co/member/show-members
+https://yoga.asdfrajkumar112.repl.co/member/show-member/1
+https://yoga.asdfrajkumar112.repl.co/member/create-member
+https://yoga.asdfrajkumar112.repl.co/member/update-member/1
+https://yoga.asdfrajkumar112.repl.co/member/delete-member/1
+
+
+https://yoga.asdfrajkumar112.repl.co/message/show-messages
+https://yoga.asdfrajkumar112.repl.co/message/show-message/1
+https://yoga.asdfrajkumar112.repl.co/message/create-messages
+https://yoga.asdfrajkumar112.repl.co/message/update-message/1
+https://yoga.asdfrajkumar112.repl.co/message/delete-message/1

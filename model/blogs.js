@@ -29,6 +29,10 @@ const Blog = sequelize.define('Blog', {
     type: DataTypes.TEXT,
     allowNull: false
   },
+  meta_tag: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
   url: {
     type: DataTypes.STRING,
     allowNull: false,

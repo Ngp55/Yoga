@@ -1,11 +1,11 @@
 const Class = require('../model/class');
 
-//console.log('blog controller is loaded');
+//console.log('class controller is loaded');
 
 module.exports.createClass = async function(req,res){
-  const { id,name,description,img,date,fees,duration,schedule,location,level,max_students,class_size,class_type,instructor,ratings,reviews,url } = req.body;
+  const { id,name,description,img,date,fees,duration,schedule,location,level,max_students,class_size,instructor,ratings,reviews,url } = req.body;
 
-  if ( !name || !description || !img || !date || !fees || !duration || !schedule || !location || !level || !max_students || !class_size || !class_type || !instructor || !ratings || !reviews || !url) {
+  if ( !name || !description || !img || !date || !fees || !duration || !schedule || !location || !level || !max_students || !class_size || !instructor || !ratings || !reviews || !url) {
     const missingFields = [];
 
     if (!name) missingFields.push('Name');
@@ -19,7 +19,6 @@ module.exports.createClass = async function(req,res){
     if (!level) missingFields.push('Level');
     if (!max_students) missingFields.push('Max students');
     if (!class_size) missingFields.push('Class size');
-    if (!class_type) missingFields.push('Class type');
     if (!instructor) missingFields.push('Instructor');
     if (!ratings) missingFields.push('Ratings');
     if (!reviews) missingFields.push('Reviews');
@@ -28,9 +27,9 @@ module.exports.createClass = async function(req,res){
     const missingFieldMessage = `Please provide : ${missingFields.join(', ')}`;
     return res.json({ message: missingFieldMessage });
   }
-  const classes = new Class({ id,name,description,img,date,fees,duration,schedule,location,level,max_students,class_size,class_type,instructor,ratings,reviews,url });
+  const DemoClass = new Class({ id,name,description,img,date,fees,duration,schedule,location,level,max_students,class_size,instructor,ratings,reviews,url });
   try {
-    await classes.save();
+    await DemoClass.save();
     return res.json({ message: 'Class created successfully' });
   } catch (error) {
     return res.status(500).json({ message: 'An error occurred while saving the Class.' });

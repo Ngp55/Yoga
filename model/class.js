@@ -40,64 +40,61 @@ const Class = sequelize.define('Class',{
   img: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      isUrl: true, // Ensure it's a valid URL
-    }
+    // validate: {
+    //   isUrl: true, // Ensure it's a valid URL
+    // }
   },
   date:{
     type:DataTypes.TEXT,
     allowNull:false
   },
   fees:{
-    type:DataTypes.DECIMAL(10,2),
+    type:DataTypes.FLOAT,
+    allowNull:false
 
   },
   duration:{
-    type:DataTypes.INTEGER,
-
+    type:DataTypes.STRING,
+    allowNull:false
   },
   schedule:{
     type:DataTypes.STRING,
-
+    allowNull:false
   },  
   location:{
     type:DataTypes.STRING,
-
+    allowNull:false
   },  
   level:{
     type:DataTypes.ENUM('Beginner', 'Intermediate', 'Advanced'),
-
+    allowNull:false
   },  
   max_students:{
     type:DataTypes.INTEGER,
-
+    allowNull:false
   },  
   class_size:{
     type:DataTypes.INTEGER,
-
+    allowNull:false
   },  
-  class_type:{
-    type:DataTypes.ENUM('Online', 'In-Person'),
-
-  },
   instructor:{
     type:DataTypes.STRING,
-
+    allowNull:false
   },
   ratings:{
-    type:DataTypes.DECIMAL(3,2),
-
+    type:DataTypes.FLOAT,
+    allowNull:false
   },
   reviews:{
-    type:DataTypes.INTEGER,
-
+    type:DataTypes.STRING,
+    allowNull:false
   },
   url:{
     type:DataTypes.STRING,
     allowNull:false,
-    validate: {
-      isUrl: true, // Ensure it's a valid URL
-    }
+    // validate: {
+    //   isUrl: true, // Ensure it's a valid URL
+    // }
   },
 },{
   tableName:'Classes',

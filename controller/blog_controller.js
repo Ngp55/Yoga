@@ -5,21 +5,22 @@ const Blog =require('../model/blogs');
 
 
 module.exports.createBlog = async function(req,res){
-  const { id,title,description,date,image,url } = req.body;
+  const { id,title,description,date,image,meta_tag,url } = req.body;
 
-  if (!title || !description || !date || !image || !url ) {
+  if (!title || !description || !date || !image || !url || !meta_tag) {
     const missingFields = [];
 
     if (!title) missingFields.push('Title');
     if (!description) missingFields.push('Description');
     if (!date) missingFields.push('Date');
     if (!image) missingFields.push('Image');
+    if (!meta_tag) missingFields.push('Meta Tag');
     if (!url) missingFields.push('URL');
 
     const missingFieldMessage = `Please provide : ${missingFields.join(', ')}`;
     return res.json({ message: missingFieldMessage });
   }
-  const blog = new Blog({ id,title,description,date,image,url });
+  const blog = new Blog({ id,title,description,date,image,meta_tag,url });
   try {
     await blog.save();
     return res.json({ message: 'Blog created successfully' });

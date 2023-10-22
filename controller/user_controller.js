@@ -1,6 +1,6 @@
 const User =require('../model/user');
 
-//console.log('blog controller is loaded');
+//console.log('User controller is loaded');
 // id
 // email
 // displayName
@@ -39,15 +39,15 @@ module.exports.showUsers = async function (req, res) {
     res.json(users);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: 'An error occurred while getting Classes' });
+    res.status(500).json({ error: 'An error occurred while getting Users' });
   }
 };
 
 module.exports.showSingleUser = async function (req, res) {
-  const classId = req.params.id;
+  const userId = req.params.id;
 
   try {
-    const users = await User.findByPk(classId);
+    const users = await User.findByPk(userId);
 
     if (!users) {
       return res.status(404).json({ error: 'User not found' });
@@ -61,16 +61,16 @@ module.exports.showSingleUser = async function (req, res) {
 };
 
 module.exports.updateUserById = async (req, res) => {
-  const classId = req.params.id;
+  const userId = req.params.id;
   const updatedData = req.body; // Assuming you send the updated data in the request body
 
   try {
-    const users = await User.findByPk(classId);
+    const users = await User.findByPk(userId);
     if (!users) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const updatedClass = await users.update(updatedData);
+    const updateduser = await users.update(updatedData);
     res.json(updatedUser);
   } catch (error) {
     console.error(error);
@@ -80,10 +80,10 @@ module.exports.updateUserById = async (req, res) => {
 
 
 module.exports.deleteUser = async function (req, res) {
-  const classId = req.params.id;
+  const userId = req.params.id;
 
   try {
-    const users = await User.findByPk(classId);
+    const users = await User.findByPk(userId);
 
     if (!users) {
       return res.status(404).json({ error: 'User not found' });
